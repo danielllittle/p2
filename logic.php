@@ -54,7 +54,7 @@ function generatePassword($array)
         } else if ($_POST['case'] == 'camelCase' && $i > 0) {
             $word = ucfirst(strtolower($word));
         } else if ($_POST['case'] == 'mIxEdCaSe') {
-            $word = formatMixedCase($word, $mixedCaseIndex % 2 == 0);
+            $word = formatMixedCase($word, $mixedCaseIndex % 2 == 1);
             $mixedCaseIndex = $mixedCaseIndex + strlen($word);
         } else {
             $word = strtolower($word);
