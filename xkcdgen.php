@@ -7,7 +7,7 @@ require 'rawlist.php';
 
 require 'logic.php';
 ?>
-<html xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<html xmlns="http://www.w3.org/1999/html">
 <head><title>XKCD Password Generator - CSCI 15 - Project #2</title></head>
 <body>
 <link rel="stylesheet" href="styles.css" type="text/css"/>
@@ -31,17 +31,17 @@ require 'logic.php';
 
             <h3><?= generatePassword($array); ?></h3>
             <hr>
-            <label align="left" for="numwords">Custom Options: </label><br><label for="numwords">Number of
-                Words: </label>
+            <label for="numwords">Custom Options: </label><br><label for="numwords">Number of
+                words: </label>
             <select id="numwords" name="numwords">
                 <?php wordOption(); ?>
             </select>
-            <nobr><select name="case">
+            <select name="case">
                     <option value="lower" <?php if ($_POST['case'] == 'lower') echo 'selected="selected"'; ?>>lowercase
                     </option>
                     <option value="UPPER" <?php if ($_POST['case'] == 'UPPER') echo 'selected="selected"'; ?>>UPPERCASE
                     </option>
-                    <label for"case">Case: </label>
+                    <label for="case">Case: </label>
                     <option value="camelCase" <?php if ($_POST['case'] == 'camelCase') echo 'selected="selected"'; ?>>
                         camelCase
                     </option>
@@ -51,8 +51,8 @@ require 'logic.php';
                 </select><br>
                 <label for="addspecial"> Add special character: </label>
                 <input name="addspecial" id="addspecial"
-                       type="checkbox" <?php if ($_POST['addspecial']) echo 'checked'; ?>></nobr>
-            <label for="addnumber">Add Number: </label>
+                       type="checkbox" <?php if ($_POST['addspecial']) echo 'checked'; ?>>
+            <label for="addnumber">Add number: </label>
             <input name="addnumber" id="addnumber"
                    type="checkbox" <?php if ($_POST['addnumber']) echo 'checked'; ?>><br>
 
@@ -63,7 +63,7 @@ require 'logic.php';
 </div>
 <br>
 
-<div class="centerImage"><a href="http://xkcd.com/936/"><img class="cartoon"
+<div class="centerImage"><a href="http://xkcd.com/936/"><img class="cartoon" alt="XKCD Comic Strip"
                                                              src="http://imgs.xkcd.com/comics/password_strength.png"></a>
 </div>
 </body>
