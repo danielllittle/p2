@@ -1,5 +1,8 @@
 <?PHP
 
+/*
+ * assumed for practical purposed that range of allowed values is [2,10]
+ */
 define(minWords, 2);
 define(maxWords, 10);
 
@@ -16,6 +19,9 @@ function wordOption()
 }
 
 
+/*
+ * pick a random special character/delimiter from the array of values
+ */
 function generateSpecialChar()
 {
 
@@ -24,6 +30,11 @@ function generateSpecialChar()
     return $special_char_array[$special_char_index];
 }
 
+/*
+ * method returns a word in mixed case, boolean $upperCase is required to keep state
+ * continuity in the password characters because the mIxEdCaSe pattern continues
+ * over multiple words
+ */
 function formatMixedCase($initialword, $upperCase) {
     $mixedCaseWord = "";
 
@@ -34,7 +45,7 @@ function formatMixedCase($initialword, $upperCase) {
         } else {
             $mixedCaseWord .= strtolower($letter);
         }
-        $upperCase = !$upperCase;
+        $upperCase = !$upperCase; //alternate upper and lower case with each letter
 
     }
     return $mixedCaseWord;
@@ -43,8 +54,8 @@ function formatMixedCase($initialword, $upperCase) {
 function generatePassword($array)
 {
     $cnt = $_POST['numwords'];
-    $specialChar = generateSpecialChar();
-    $mixedCaseIndex = 0;
+    $specialChar = generateSpecialChar(); //special character used for delimiter and appended special character
+    $mixedCaseIndex = 0; //used to track index for mIxEdCaSe only
 
     for ($i = 0; $i < $cnt; $i++) {
 
@@ -52,23 +63,23 @@ function generatePassword($array)
         if ($_POST['case'] == 'UPPER' || (($_POST['case'] == 'altCASE') && $i % 2 == 1))  {
             $word = strtoupper($word);
         } else if ($_POST['case'] == 'camelCase' && $i > 0) {
-            $word = ucfirst(strtolower($word));
-        } else if ($_POST['case'] == 'mIxEdCaSe') {
+            $word = ucfirst(strtolower($word));//drop words to lowercase then raise first letter to uppercase after first word
+        } else if ($_POST['case'] == 'mIxEdCaSe') { //alternate letters between lower and uppercase, index needed to maintain state of case
             $word = formatMixedCase($word, $mixedCaseIndex % 2 == 1);
             $mixedCaseIndex = $mixedCaseIndex + strlen($word);
-        } else {
+        } else {  //default option to lowercase (also, first word in camelCase reaches here)
             $word = strtolower($word);
         }
 
         echo $word;
 
-        if (($i < $cnt - 1)  && $_POST['adddelimiter']) {
+        if (($i < $cnt - 1)  && $_POST['adddelimiter']) { //when selected, add delimiter after every word but last
             echo $specialChar;
         }
     }
-    if ($_POST['addspecial']) {
+    if ($_POST['addspecial']) { //append special delimiter when user selects option
         echo $specialChar;
-    }if ($_POST['addnumber']) {
+    }if ($_POST['addnumber']) { //append number to end when user select option
         echo rand(0,9);
     }
 }

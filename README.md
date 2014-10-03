@@ -15,7 +15,7 @@ Delivered the following features:
 
     1.  user input assigns dynamic number of words  - (Allowed value range 2-10)
     2.  2000+ word list scraped curtesy of paulnoll.com
-    3.  user option to include for word delimiter (character is randomly assign from set {})
+    3.  user option to include for word delimiter (character is randomly assigned from set {"$", ".", "#", "%", "^", "&", "*", "(", ")", "_"})
     4.  user option to append number to end of password
     5.  user option to append delimiter at end of password (special character is same as delimiter above)
     6.  user option to choose from 5 different case variations
