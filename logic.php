@@ -16,33 +16,39 @@ function wordOption()
 }
 
 
-function generateDelimiter()
+function generateSpecialChar()
 {
 
     $special_char_array = array("$", ".", "#", "%", "^", "&", "*", "(", ")", "_");
     $special_char_index = array_rand($special_char_array);
-    if ($_POST['addspecial']) {
-        return $special_char_array[$special_char_index];
-    }
+    return $special_char_array[$special_char_index];
 }
 
 function generatePassword($array)
 {
     $cnt = $_POST['numwords'];
-    $delimiter = generateDelimiter();
+    $specialChar = generateSpecialChar();
 
 
     for ($i = 0; $i < $cnt; $i++) {
 
-        echo $array[array_rand($array)];
-        if ($i < $cnt - 1) {
-            echo $delimiter;
+        $word = $array[array_rand($array)];
+        if ($_POST['case'] == 'UPPER' || (($_POST['case'] == 'altCASE') && $i % 2 == 1))  {
+            $word = strtoupper($word);
+        } else if ($_POST['case'] == 'camelCase' && $i > 0) {
+            $word = ucfirst(strtolower($word));
+        } else {
+            $word = strtolower($word);
         }
+        if ($i < $cnt - 1) {
+            //echo $delimiter;
+        }
+        echo $word;
     }
     if ($_POST['addspecial']) {
-        echo generateDelimiter();
+        echo $specialChar;
     }if ($_POST['addnumber']) {
-        echo 1;
+        echo rand(0,9);
     }
 }
 
