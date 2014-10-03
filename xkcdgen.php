@@ -9,7 +9,7 @@ require 'logic.php';
 ?>
 <head><title>XKCD Password Generator - CSCI 15 - Project #2</title>
     <meta charset='utf-8'>
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles.css"/>
 </head>
 <body>
 
@@ -38,22 +38,23 @@ require 'logic.php';
             <select id="numwords" name="numwords">
                 <?php wordOption(); ?>
             </select>
+            <label for="case">Case: </label>
             <select name="case">
-                    <option value="lower" <?php if ($_POST['case'] == 'lower') echo 'selected="selected"'; ?>>lowercase
-                    </option>
-                    <option value="UPPER" <?php if ($_POST['case'] == 'UPPER') echo 'selected="selected"'; ?>>UPPERCASE
-                    </option>
-                    <label for="case">Case: </label>
-                    <option value="camelCase" <?php if ($_POST['case'] == 'camelCase') echo 'selected="selected"'; ?>>
-                        camelCase
-                    </option>
-                    <option value="altCASE" <?php if ($_POST['case'] == 'altCASE') echo 'selected="selected"'; ?>>
-                        alternateCASE
-                    </option>
-                </select><br>
-                <label for="addspecial"> Add special character: </label>
-                <input name="addspecial" id="addspecial"
-                       type="checkbox" <?php if ($_POST['addspecial']) echo 'checked'; ?>>
+                <option value="lower" <?php if ($_POST['case'] == 'lower') echo 'selected="selected"'; ?>>lowercase
+                </option>
+                <option value="UPPER" <?php if ($_POST['case'] == 'UPPER') echo 'selected="selected"'; ?>>UPPERCASE
+                </option>
+
+                <option value="camelCase" <?php if ($_POST['case'] == 'camelCase') echo 'selected="selected"'; ?>>
+                    camelCase
+                </option>
+                <option value="altCASE" <?php if ($_POST['case'] == 'altCASE') echo 'selected="selected"'; ?>>
+                    alternateCASE
+                </option>
+            </select><br>
+            <label for="addspecial"> Add special character: </label>
+            <input name="addspecial" id="addspecial"
+                   type="checkbox" <?php if ($_POST['addspecial']) echo 'checked'; ?>>
             <label for="addnumber">Add number: </label>
             <input name="addnumber" id="addnumber"
                    type="checkbox" <?php if ($_POST['addnumber']) echo 'checked'; ?>><br>
