@@ -24,11 +24,27 @@ function generateSpecialChar()
     return $special_char_array[$special_char_index];
 }
 
+function formatMixedCase($initialword, $upperCase) {
+    $mixedCaseWord = "";
+
+    foreach (str_split($initialword) as $letter) {
+
+        if ($upperCase) {
+            $mixedCaseWord .= strtoupper($letter);
+        } else {
+            $mixedCaseWord .= strtolower($letter);
+        }
+        $upperCase = !$upperCase;
+
+    }
+    return $mixedCaseWord;
+}
+
 function generatePassword($array)
 {
     $cnt = $_POST['numwords'];
     $specialChar = generateSpecialChar();
-
+    $mixedCaseIndex = 0;
 
     for ($i = 0; $i < $cnt; $i++) {
 
@@ -37,6 +53,9 @@ function generatePassword($array)
             $word = strtoupper($word);
         } else if ($_POST['case'] == 'camelCase' && $i > 0) {
             $word = ucfirst(strtolower($word));
+        } else if ($_POST['case'] == 'mIxEdCaSe') {
+            $word = formatMixedCase($word, $mixedCaseIndex % 2 == 0);
+            $mixedCaseIndex = $mixedCaseIndex + strlen($word);
         } else {
             $word = strtolower($word);
         }
