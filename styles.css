@@ -1,0 +1,53 @@
+
+
+h1 {
+    text-align:center;background:#F2F2F2
+}
+
+h2 {
+    text-align:center;background:#F2F2F2
+}
+
+body {
+
+    COLOR:#000000; background:#F2F2F2; text-align:center;
+}
+
+fieldset {
+    color: black; background-color: white;
+}
+
+h3 {
+    color: red; background-color: white;
+}
+
+.centerImage {
+    text-align:center; background:#F2F2F2;
+}
+
+p {
+    margin-left: 8cm;
+    margin-right: 8cm;
+}
+
+
+.password {
+    text-align:center;
+
+    color: #000000;
+
+}
+
+#number_of_words {
+    width:40px;
+}
+
+.details {
+    margin-top:25px;
+}
+
+.comic {
+    width:75%;
+    max-width:500px;
+}
+
