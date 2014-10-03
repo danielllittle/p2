@@ -7,10 +7,12 @@ require 'rawlist.php';
 
 require 'logic.php';
 ?>
-<html xmlns="http://www.w3.org/1999/html">
-<head><title>XKCD Password Generator - CSCI 15 - Project #2</title></head>
+<head><title>XKCD Password Generator - CSCI 15 - Project #2</title>
+    <meta charset='utf-8'>
+    <link rel="stylesheet" href="styles.css" />
+</head>
 <body>
-<link rel="stylesheet" href="styles.css" type="text/css"/>
+
 <h1>XKCD Password Generator</h1>
 
 <h2>CSCI 15 - Project #2</h2>
