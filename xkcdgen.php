@@ -5,59 +5,35 @@ error_reporting(E_ALL);
 
 require 'rawlist.php';
 
-define(minWords , 2);
-define(maxWords , 10);
-
-function wordOption() {
-    for ($i=minWords; $i<=maxWords; $i++) {
-        echo "<option ";
-        if ($_POST['numwords'] == $i) {
-            echo "selected=\"selected\"";
-        }
-        echo ">$i</option>";
-    }
-}
-
-
-function generateDelimiter() {
-
-    $special_char_array = array("$",".","#", "%", "^", "&", "*", "(", ")", "_");
-    $special_char_index = array_rand($special_char_array);
-    if ($_POST['addspecial']) {
-        return $special_char_array[$special_char_index];
-    }
-}
-
-function generatePassword($array) {
-    $cnt = $_POST['numwords'];
-    $delimiter = generateDelimiter();
-
-
-    for($i = 0 ; $i < $cnt ; $i++) {
-
-        echo $array[array_rand($array)];
-        if ($i < $cnt - 1) {
-            echo $delimiter;
-        }
-    }
-}
+require 'logic.php';
 ?>
-
 <html xmlns="http://www.w3.org/1999/html">
-<head><title>XRCD Password Generator - CSCI 15 - Project #2</title></head><body>
-<h1>XRCD Password Generator</h1>
-
-<form method="post">
+<head><title>XKCD Password Generator - CSCI 15 - Project #2</title></head><body>
+<link rel="stylesheet" href="styles.css" type="text/css" />
+<h1>XKCD Password Generator</h1>
+<h2>CSCI 15 - Project #2</h2>
+<h2>Daniel Little</h2>
+<p>A simple password generator based on the notion that combining memorable words into a phrase is more secure than a supposed "s3cure p4$$word."  The cartoon below depicts the idea that a string of four random words would be a secure password.    Click 'Generate Password' to begin generating new XKCD format passwords.   Be sure to try selecting different options below to customize your password result even futher.</p>
+<div><form method="post">
     <fieldset>
 
-        <label id="password" ><?=generatePassword($array);?></label>
-        <label for="numwords">Number of Words: </label><select id="numwords" name="numwords">
+
+
+        <input type="submit" value="Generate Password"><br>
+        <h3><?=generatePassword($array);?></h3><hr>
+        <label align="left" for="numwords">Options: </label><label for="numwords">Number of Words: </label>
+        <select id="numwords" name="numwords">
             <?php wordOption();?>
-        </select></p>
-        <label for="addspecial"> Add special characters: </label><input name="addspecial" id="addspecial" type="checkbox" <?php if ($_POST['addspecial']) echo 'checked';?>>
-        <label for="addnumber">Add Number: </label><input name="addnumber" id="addnumber" type="checkbox" <?php if ($_POST['addnumber']) echo 'checked'; ?>>
-        <input type="submit">
+        </select>
+        <nobr> <label for="addspecial"> Add special characters: </label>
+            <input name="addspecial" id="addspecial" type="checkbox" <?php if ($_POST['addspecial']) echo 'checked';?>></nobr>
+        <label for="addnumber">Add Number: </label>
+        <input name="addnumber" id="addnumber" type="checkbox" <?php if ($_POST['addnumber']) echo 'checked'; ?>>
     </fieldset>
+    <!--select><option>none</option><option>camelCase</option><option></option></select></p></fieldset-->
 </form>
+</div>
+<br>
+<div class="centerImage"><a href="http://xkcd.com/936/"><img class="cartoon" src="http://imgs.xkcd.com/comics/password_strength.png"></a></div>
 </body>
 </html>
