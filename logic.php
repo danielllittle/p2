@@ -40,10 +40,12 @@ function generatePassword($array)
         } else {
             $word = strtolower($word);
         }
-        if ($i < $cnt - 1) {
-            //echo $delimiter;
-        }
+
         echo $word;
+
+        if (($i < $cnt - 1)  && $_POST['adddelimiter']) {
+            echo $specialChar;
+        }
     }
     if ($_POST['addspecial']) {
         echo $specialChar;

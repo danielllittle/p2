@@ -33,13 +33,13 @@ require 'logic.php';
 
             <h3><?= generatePassword($array); ?></h3>
             <hr>
-            <label for="numwords">Custom Options: </label><br><label for="numwords">Number of
+            <label>Custom Options: </label><br><label for="numwords">Number of
                 words: </label>
             <select id="numwords" name="numwords">
                 <?php wordOption(); ?>
             </select>
             <label for="case">Case: </label>
-            <select name="case">
+            <select name="case" id="case">
                 <option value="lower" <?php if ($_POST['case'] == 'lower') echo 'selected="selected"'; ?>>lowercase
                 </option>
                 <option value="UPPER" <?php if ($_POST['case'] == 'UPPER') echo 'selected="selected"'; ?>>UPPERCASE
@@ -52,12 +52,15 @@ require 'logic.php';
                     alternateCASE
                 </option>
             </select><br>
-            <label for="addspecial"> Add special character: </label>
+            <label for="addspecial"> Append special character: </label>
             <input name="addspecial" id="addspecial"
                    type="checkbox" <?php if ($_POST['addspecial']) echo 'checked'; ?>>
-            <label for="addnumber">Add number: </label>
+            <label for="addnumber">Append number: </label>
             <input name="addnumber" id="addnumber"
-                   type="checkbox" <?php if ($_POST['addnumber']) echo 'checked'; ?>><br>
+                   type="checkbox" <?php if ($_POST['addnumber']) echo 'checked'; ?>>
+            <label for="adddelimiter">Include word delimiter: </label>
+            <input name="adddelimiter" id="adddelimiter"
+                   type="checkbox" <?php if ($_POST['adddelimiter']) echo 'checked'; ?>><br>
 
 
         </fieldset>
